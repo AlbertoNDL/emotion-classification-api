@@ -231,3 +231,31 @@ All endpoints are covered by automated tests:
 Alberto Nadal López
 
 Project developed as part of a professional transition toward a Machine Learning Engineer role, focusing on practical ML system design, production constraints, and honest evaluation of model limitations.
+
+---
+
+## Design Decisions
+
+### Model Architecture
+The system is built around a Transformer-based text classification model, chosen for its strong performance on contextual emotion detection tasks. The architecture prioritizes inference stability and reproducibility over aggressive experimentation.
+
+### Training Strategy
+Instead of continuous retraining, the project explores incremental calibration on targeted emotion classes to mitigate dataset imbalance. This reflects real-world constraints where new labeled data is often limited and imperfect.
+
+### Data Handling
+Raw datasets and trained model artifacts are intentionally excluded from the repository. This enforces a clear separation between code and data, aligning with production and compliance best practices.
+
+### Inference Pipeline
+The inference layer is designed to be lightweight and deterministic:
+- Tokenization and preprocessing are strictly versioned
+- Dynamic batching is supported for throughput optimization
+- ONNX compatibility is considered for deployment flexibility
+
+### API Design
+FastAPI was selected for its performance, type safety, and automatic OpenAPI documentation. Authentication, rate limiting, and clear error handling are treated as first-class concerns.
+
+### Deployment
+Docker is used to guarantee environment consistency across local development and production. The container is optimized for fast startup and minimal image size, making it suitable for cloud-based deployments.
+
+### Limitations
+Emotion classification is inherently ambiguous. The project intentionally exposes these limitations rather than hiding them, highlighting challenges such as label subjectivity, class overlap, and dataset bias.

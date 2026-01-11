@@ -26,7 +26,7 @@ from app.metrics import metrics
 
 from src.preprocess import clean_text
 
-LABELS = ["anger", "disgust", "fear", "joy", "sadness", "surprise"]
+LABELS = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
 
 # ──────────────────────────────────────────────────
 # Logging

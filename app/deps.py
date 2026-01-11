@@ -2,7 +2,7 @@ from functools import lru_cache
 from app.config import settings
 from app.model import EmotionModel
 from app.batcher import DynamicBatcher
-from scripts.select_batcher_params import select_best
+from app.select_batcher_params import select_best
 
 @lru_cache(maxsize=1)
 def get_model() -> EmotionModel:

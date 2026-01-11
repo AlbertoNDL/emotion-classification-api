@@ -20,7 +20,7 @@ THROUGHPUT = np.array([
 MIN_BATCHES = np.array([1, 2, 4, 8])
 MAX_WAITS = np.array([0.01, 0.02, 0.05, 0.1, 0.2])
 
-THROUGHPUT_RATIO = 0.7  # 70% del máximo
+THROUGHPUT_RATIO = 0.7
 
 def select_best():
     max_tp = THROUGHPUT.max()
@@ -37,10 +37,3 @@ def select_best():
         "p95_ms": float(P95[idx]),
         "throughput": float(THROUGHPUT[idx]),
     }
-
-
-if __name__ == "__main__":
-    best = select_best()
-    print("Optimal batcher config:")
-    for k, v in best.items():
-        print(f"  {k}: {v}")
