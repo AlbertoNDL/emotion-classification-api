@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+
+# ML artifacts
+models/
+artifacts/
+checkpoints/
+*.onnx
+*.pt
+*.bin
+*.safetensors
+trt_cache/
+
+# Data
+data/*.csv
+data/*.tsv
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
