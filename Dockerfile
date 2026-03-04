@@ -18,7 +18,6 @@ RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.api.
 
 COPY app ./app
 COPY src ./src
-COPY models ./models
 
 
 EXPOSE 8000
