@@ -162,8 +162,9 @@ The training pipeline intentionally reflects real-world issues, including:
 ---
 
 ## Project Structure
+
 ml-training-pipeline/
-├─ app/                **Inference API**
+├─ app/
 │  ├─ main.py
 │  ├─ batcher.py
 │  ├─ deps.py
@@ -174,13 +175,13 @@ ml-training-pipeline/
 │  ├─ model.py
 │  └─ utils/
 │     └─ prediction.py
-├─ scripts/            **Training & benchmarking helpers**
-├─ src/                **Training pipeline**
+├─ scripts/
+├─ src/
 │  ├─ config.py
 │  ├─ load_data.py
 │  ├─ preprocess.py
 │  └─ train_transformer.py
-├─ tests/              **API tests**
+├─ tests/
 ├─ README.md
 └─ requirements.txt
 
@@ -227,13 +228,6 @@ All endpoints are covered by automated tests:
 
 ---
 
-## Author
-Alberto Nadal López
-
-Project developed as part of a professional transition toward a Machine Learning Engineer role, focusing on practical ML system design, production constraints, and honest evaluation of model limitations.
-
----
-
 ## Design Decisions
 
 ### Model Architecture
@@ -259,3 +253,11 @@ Docker is used to guarantee environment consistency across local development and
 
 ### Limitations
 Emotion classification is inherently ambiguous. The project intentionally exposes these limitations rather than hiding them, highlighting challenges such as label subjectivity, class overlap, and dataset bias.
+=======
+
+---
+
+## Author
+Alberto Nadal López
+
+Project developed as part of a professional transition toward a Machine Learning Engineer role, focusing on practical ML system design, production constraints, and honest evaluation of model limitations.
