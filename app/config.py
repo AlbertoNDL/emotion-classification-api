@@ -22,6 +22,7 @@ class Settings(BaseSettings):
 
     ONNX_MODEL_PATH: str = "models/onnx/model.onnx"
     HF_MODEL_NAME: str = "j-hartmann/emotion-english-distilroberta-base"
+    MODEL_PROVIDER: str = "cpu"
 
     class Config:
         env_file = ".env"

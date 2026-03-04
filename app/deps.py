@@ -9,6 +9,7 @@ def get_model() -> EmotionModel:
     return EmotionModel(
         onnx_path=settings.ONNX_MODEL_PATH,
         model_name=settings.HF_MODEL_NAME,
+        model_provider=settings.MODEL_PROVIDER,
     )
 
 @lru_cache(maxsize=1)

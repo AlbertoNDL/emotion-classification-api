@@ -1,22 +1,20 @@
-FROM python:3.11-slim
+FROM --platform=$TARGETPLATFORM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV MODEL_PROVIDER=cpu
 
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
-    build-essential \
     libgl1 \
     libglib2.0-0 \
+    libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+COPY requirements.api.txt .
 
-COPY requirements.txt .
-
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.api.txt
 
 COPY app ./app
 COPY src ./src

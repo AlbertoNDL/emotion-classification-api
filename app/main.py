@@ -1,5 +1,6 @@
 import logging
 import time
+import onnxruntime as ort
 from fastapi import FastAPI, Depends, Request, APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -58,6 +59,7 @@ app.add_middleware(SlowAPIMiddleware)
 # ──────────────────────────────────────────────────
 @app.on_event("startup")
 async def startup_event():
+    logger.info("ONNXRuntime available providers at startup: %s", ort.get_available_providers())
     batcher = get_batcher()
     await batcher.start()
     logger.info("DynamicBatcher successfully started")
