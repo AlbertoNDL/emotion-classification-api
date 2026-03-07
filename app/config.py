@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+from pathlib import Path
 
 
 class Settings(BaseSettings):
@@ -20,9 +21,17 @@ class Settings(BaseSettings):
     API_KEY_NAME: str = "X-API-Key"
     API_KEY: str = "super-secret-key"
 
-    ONNX_MODEL_PATH: str = "models/onnx/model.onnx"
+    MODEL_DIR: str = "models/emotions-v1.1"
+    ONNX_MODEL_RELATIVE_PATH: str = "onnx/model.onnx"
+    ONNX_MODEL_PATH: str | None = None
     HF_MODEL_NAME: str = "j-hartmann/emotion-english-distilroberta-base"
     MODEL_PROVIDER: str = "cpu"
+
+    @property
+    def resolved_onnx_model_path(self) -> str:
+        if self.ONNX_MODEL_PATH:
+            return self.ONNX_MODEL_PATH
+        return str(Path(self.MODEL_DIR) / self.ONNX_MODEL_RELATIVE_PATH)
 
     class Config:
         env_file = ".env"

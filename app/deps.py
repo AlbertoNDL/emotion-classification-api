@@ -7,7 +7,7 @@ from app.select_batcher_params import select_best
 @lru_cache(maxsize=1)
 def get_model() -> EmotionModel:
     return EmotionModel(
-        onnx_path=settings.ONNX_MODEL_PATH,
+        onnx_path=settings.resolved_onnx_model_path,
         model_name=settings.HF_MODEL_NAME,
         model_provider=settings.MODEL_PROVIDER,
     )
