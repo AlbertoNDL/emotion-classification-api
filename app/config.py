@@ -10,7 +10,8 @@ class Settings(BaseSettings):
     Attributes:
         API_PREFIX (str): The API version prefix for all endpoints. Defaults to "/v1".
         API_KEY_NAME (str): The HTTP header name for API authentication. Defaults to "X-API-Key".
-        API_KEY (str): The secret API key for authentication. Defaults to "super-secret-key".
+        API_KEY (str): One or more secret API keys for authentication.
+            Multiple keys can be provided separated by commas.
         MLFLOW_TRACKING_URI (str): The URI for MLflow experiment tracking. 
             Defaults to "file:./mlruns" for local file storage.
     Configuration:
@@ -32,6 +33,10 @@ class Settings(BaseSettings):
         if self.ONNX_MODEL_PATH:
             return self.ONNX_MODEL_PATH
         return str(Path(self.MODEL_DIR) / self.ONNX_MODEL_RELATIVE_PATH)
+
+    @property
+    def parsed_api_keys(self) -> set[str]:
+        return {key.strip() for key in self.API_KEY.split(",") if key.strip()}
 
     class Config:
         env_file = ".env"

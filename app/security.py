@@ -7,7 +7,7 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 
 api_key_header = APIKeyHeader(
-    name="X-API-Key",
+    name=settings.API_KEY_NAME,
     auto_error=False,
     description="API Key for authentication (example: super-secret-key)",
 )
@@ -37,7 +37,15 @@ def get_api_key(api_key: str = Depends(api_key_header)) -> str:
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or missing API key",
         )
-    if api_key != settings.API_KEY:
+    configured_api_keys = settings.parsed_api_keys
+    if not configured_api_keys:
+        logger.error("No API keys configured")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing API key",
+        )
+
+    if api_key not in configured_api_keys:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or missing API key",
