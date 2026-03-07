@@ -49,7 +49,7 @@ limiter = Limiter(key_func=rate_limit_key)
 app = FastAPI(
     title="Emotion Classification API",
     version="1.0.0",
-    root_path="/api/emotion-classification-api"
+    root_path="/api/emotion"
 )
 
 app.state.limiter = limiter
