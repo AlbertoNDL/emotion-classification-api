@@ -12,9 +12,9 @@ RUN apt-get update && apt-get install -y \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.api.txt .
+COPY requirements.txt .
 
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.api.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
 COPY src ./src
